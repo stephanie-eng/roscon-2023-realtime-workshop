@@ -31,30 +31,36 @@ int main(int argc, char* argv[]) {
   // // ***************
   // // * Example 2.1 *
   // // ***************
-  // // Repeatedly set and get PID constants to force lock contention
+  // // Oscillate the pendulum back-and-forth between +/- pi every 2 * pi * seconds
   // auto set_desired_positions_thread = std::thread(
   //   [&]() {
   //     while (true) {
+  //       auto       span = Tracer().WithSpan("SetDesiredPosition", "app");
   //       const auto now = std::chrono::system_clock::now();
   //       const auto now_millis = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
-  //       shared_context->desired_position.value = sin(now_millis);
-  //       std::cout << now_millis << "\n";
+  //       shared_context->desired_position.Set(sin(static_cast<double>(now_millis) / 1000));
   //     }
   //   }
   // );
 
-  // // ***************
-  // // * Example 2.2 *
-  // // ***************
-  // // Repeatedly set and get PID constants to force lock contention
-  // auto set_pid_thread = std::thread(
-  //   [&]() {
-  //     while (true) {
-  //       auto pid = shared_context->pid_constants.Get();
-  //       shared_context->pid_constants.Set(pid);
-  //     }
-  //   }
-  // );
+  // ***************
+  // * Example 2.2 *
+  // ***************
+  // Repeatedly set and get PID constants to force lock contention
+  cactus_rt::ThreadConfig thread_config;
+  thread_config.SetOtherScheduler(80);             // Use FIFO scheduler with  thread priority 80
+  thread_config.tracer_config.trace_sleep = true;  // Trace the sleep duration
+  auto set_pid_thread = std::make_shared<cactus_rt::Thread>(thread_config);
+
+  auto set_pid_thread = std::thread(
+    [&]() {
+      while (true) {
+        auto span = Tracer().WithSpan("SetPID", "app");
+        auto pid = shared_context->pid_constants.Get();
+        shared_context->pid_constants.Set(pid);
+      }
+    }
+  );
 
   cactus_rt::CyclicThreadConfig rt_thread_config;
   rt_thread_config.period_ns = 1'000'000;             // 1 ms loop

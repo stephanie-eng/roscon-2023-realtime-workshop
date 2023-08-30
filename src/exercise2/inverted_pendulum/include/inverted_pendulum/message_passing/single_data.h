@@ -17,7 +17,7 @@ struct SingleData {
 
  private:
   // std::mutex mutex_;
-  // double value_;
+  // double     value_;
 
   std::atomic<double> value_;
 };
