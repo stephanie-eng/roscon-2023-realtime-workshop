@@ -47,15 +47,9 @@ int main(int argc, char* argv[]) {
   // * Example 2.2 *
   // ***************
   // Repeatedly set and get PID constants to force lock contention
-  cactus_rt::ThreadConfig thread_config;
-  thread_config.SetOtherScheduler(80);             // Use FIFO scheduler with  thread priority 80
-  thread_config.tracer_config.trace_sleep = true;  // Trace the sleep duration
-  auto set_pid_thread = std::make_shared<cactus_rt::Thread>(thread_config);
-
   auto set_pid_thread = std::thread(
     [&]() {
       while (true) {
-        auto span = Tracer().WithSpan("SetPID", "app");
         auto pid = shared_context->pid_constants.Get();
         shared_context->pid_constants.Set(pid);
       }
