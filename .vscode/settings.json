@@ -1,0 +1,48 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/ubuntu/roscon-2023-realtime-workshop/install/inverted_pendulum_interfaces/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/ubuntu/roscon-2023-realtime-workshop/install/inverted_pendulum_interfaces/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "files.associations": {
+        "array": "cpp",
+        "atomic": "cpp",
+        "bit": "cpp",
+        "*.tcc": "cpp",
+        "chrono": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "csignal": "cpp",
+        "cstddef": "cpp",
+        "cstdint": "cpp",
+        "cstdlib": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "exception": "cpp",
+        "iterator": "cpp",
+        "memory": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "functional": "cpp",
+        "initializer_list": "cpp",
+        "iosfwd": "cpp",
+        "limits": "cpp",
+        "mutex": "cpp",
+        "new": "cpp",
+        "ostream": "cpp",
+        "ratio": "cpp",
+        "sstream": "cpp",
+        "stdexcept": "cpp",
+        "typeinfo": "cpp"
+    }
+}

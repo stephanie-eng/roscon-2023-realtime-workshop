@@ -43,23 +43,22 @@ int main(int argc, char* argv[]) {
   //   }
   // );
 
-  // ***************
-  // * Example 2.2 *
-  // ***************
-  // Repeatedly set and get PID constants to force lock contention
-  auto set_pid_thread = std::thread(
-    [&]() {
-      while (true) {
-        auto pid = shared_context->pid_constants.Get();
-        shared_context->pid_constants.Set(pid);
-      }
-    }
-  );
+  // // ***************
+  // // * Example 2.2 *
+  // // ***************
+  // // Repeatedly set and get PID constants to force lock contention
+  // auto set_pid_thread = std::thread(
+  //   [&]() {
+  //     while (true) {
+  //       auto pid = shared_context->pid_constants.Get();
+  //       shared_context->pid_constants.Set(pid);
+  //     }
+  //   }
+  // );
 
   cactus_rt::CyclicThreadConfig rt_thread_config;
   rt_thread_config.period_ns = 1'000'000;             // 1 ms loop
   rt_thread_config.SetFifoScheduler(80);              // Use FIFO scheduler with  thread priority 80
-  rt_thread_config.tracer_config.trace_sleep = true;  // Trace the sleep duration
   auto rt_thread = std::make_shared<RtThread>(shared_context, rt_thread_config);
 
   App app;

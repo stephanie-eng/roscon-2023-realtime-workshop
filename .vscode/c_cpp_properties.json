@@ -1,0 +1,23 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/ubuntu/roscon-2023-realtime-workshop/install/inverted_pendulum_example/include/**",
+        "/home/ubuntu/roscon-2023-realtime-workshop/install/inverted_pendulum_interfaces/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/ubuntu/roscon-2023-realtime-workshop/src/exercise2/inverted_pendulum/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-arm64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
